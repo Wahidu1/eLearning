@@ -42,4 +42,7 @@ ENV/
 # Windows specific
 Thumbs.db
 
+
+
+
 .env
