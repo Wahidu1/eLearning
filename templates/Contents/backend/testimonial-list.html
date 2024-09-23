@@ -1,0 +1,59 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} Instructor List {% endblock %}
+
+{% block content %}
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header"> Instructor List</div>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th style ="width:5%">SL</th>
+                        <th style ="width:10%">Name</th>
+                        <th style ="width:10%">Image</th>
+                        <th style ="width:15%">Designation</th>
+                        <th style ="width:45%">Description</th>
+                        <th style ="width:15%">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for testimonial in testimonials %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td> {{testimonial.name}} </td>
+                        <td> 
+                            {% if testimonial.image %}
+                            <img src="{{ testimonial.image.url }}" alt="Profile Picture" width="50" height="50">
+                            {% else %}
+                            No picture
+                            {% endif %}
+
+                        </td>
+                        <td> {{testimonial.designation}} </td>
+                        <td>{{testimonial.description|slice:":60"}}</td>
+                        <td>
+                              <a class="btn btn-info" href="{% url "backend_content:testimonial_edit" id=testimonial.id %}#">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                              </a>
+                              <a class="btn btn-danger" href="#">
+                                <i class="fa-solid fa-trash"></i>
+                              </a>
+
+                        </td>
+                      </tr>
+                    
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+    <!-- Include any additional JavaScript for form handling -->
+{% endblock javascripts %}

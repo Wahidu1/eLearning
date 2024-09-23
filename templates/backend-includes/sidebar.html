@@ -1,0 +1,146 @@
+
+    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+      <div class="sidebar-brand d-none d-md-flex nav-title">
+        <h3>eLearing</h3>
+      </div>
+      <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        <li class="nav-item"><a class="nav-link" href="{% url "backend_home:backend_dashboard" %}">
+            <svg class="nav-icon">
+              <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
+            </svg> Dashboard</a></li>
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+              </svg> Instructor Manage </a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_account:backend_instructor_add" %}"><span class="nav-icon"></span> Instructor Add</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_account:backend_instructor_list" %}"><span class="nav-icon"></span> Instructor List</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+            <svg class="nav-icon">
+              <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+            </svg> Student Manage </a>
+          <ul class="nav-group-items">
+            <li class="nav-item"><a class="nav-link" href="{% url "backend_account:backend_student_add" %}"><span class="nav-icon"></span> Student Add</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url "backend_account:backend_student_list" %}"><span class="nav-icon"></span> Student List</a></li>
+          </ul>
+        </li>
+        <li class="nav-title">Course</li>
+        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+          </svg> Course Manage </a>
+        <ul class="nav-group-items">
+          
+          <li class="nav-item">
+
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+              </svg> Course Category </a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_course:course_category_add" %}"><span class="nav-icon"></span> Course Category Add</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_course:course_category_list" %}"><span class="nav-icon"></span> Course Category List</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+              </svg> Course </a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_course:course_add" %}"><span class="nav-icon"></span> Course Add</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_course:course_list" %}"><span class="nav-icon"></span> Course List</a></li>
+            </ul>
+          </li>
+          </li>
+          <li class="nav-item">
+
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+              </svg> Module </a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_course:module_add" %}"><span class="nav-icon"></span> Module Add</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_course:module_list" %}"><span class="nav-icon"></span> Module List</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+              </svg> Resource </a>
+            <ul class="nav-group-items">
+
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_course:resource_add" %}"><span class="nav-icon"></span> Resource Add</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url "backend_course:resource_list" %}"><span class="nav-icon"></span> Resource List</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+        <svg class="nav-icon">
+          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+        </svg> Enrollments Manage </a>
+      <ul class="nav-group-items">
+        <li class="nav-item"><a class="nav-link" href="{% url "backend_enrollment:enrollment_add" %}"><span class="nav-icon"></span> Enrollments Add</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "backend_enrollment:enrollment_list" %}"><span class="nav-icon"></span> Enrollments List</a></li>
+      </ul>
+    </li>
+        
+      <li class="nav-title">Contents</li>
+
+      <li class="nav">
+          <a class="nav-link" href="{% url "backend_content:common_page" %}">
+          <svg class="nav-icon">
+            <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+          </svg> Common Page
+        </a>
+
+    </li>
+          <li class="nav">
+            <a class="nav-link" href="{% url "backend_content:contact_page" %}">
+            <svg class="nav-icon">
+              <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+            </svg> Contact
+          </a>
+      </li>
+          <li class="nav">
+            <a class="nav-link" href="{% url "backend_content:query_list" %}">
+            <svg class="nav-icon">
+              <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+            </svg> Query
+          </a>
+
+      </li>
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+        <svg class="nav-icon">
+          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+        </svg> Testimonial Manage </a>
+      <ul class="nav-group-items">
+        <li class="nav-item"><a class="nav-link" href="{% url "backend_content:testimonial_add" %}"><span class="nav-icon"></span> Testimonial Add</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "backend_content:testimonial_list" %}"><span class="nav-icon"></span> Testimonial List</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-title">COMMUNICATION</li>
+
+      
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+        <svg class="nav-icon">
+          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+        </svg> Notifications Manage </a>
+      <ul class="nav-group-items">
+        <li class="nav-item"><a class="nav-link" href="{% url "backend_communication:notification_add" %}"><span class="nav-icon"></span> Notifications Add</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "backend_communication:notification_list" %}"><span class="nav-icon"></span> Notifications List</a></li>
+      </ul>
+    </li>
+
+      </ul>
+    </div>
+    

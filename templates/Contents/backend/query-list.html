@@ -1,0 +1,54 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} Instructor List {% endblock %}
+
+{% block content %}
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header"> Instructor List</div>
+            <table class="table m-4">
+                <thead>
+                    <tr>
+                        <th style ="width:5%">SL</th>
+                        <th style ="width:10%">Name</th>
+                        <th style ="width:10%">Email</th>
+                        <th style ="width:15%">Subject</th>
+                        <th style ="width:35%">Message</th>
+                        <th style ="width:15%">Send Time</th>
+                        <th style ="width:10%">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for query in queries %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td> {{query.name}} </td>
+                        <td> {{query.email}} </td>
+                        <td> {{query.subject}} </td>
+                        <td>{{query.message|slice:":60"}}</td>
+                        <td>{{query.created_at}}</td>
+                        <td>
+                              <a class="btn btn-success" href="{% url "backend_content:query_details" id=query.id %}">
+                                <i class="fa-solid fa-eye"></i>
+                              </a>
+
+
+
+
+                        </td>
+                      </tr>
+                    
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+    <!-- Include any additional JavaScript for form handling -->
+{% endblock javascripts %}

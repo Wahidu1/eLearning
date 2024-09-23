@@ -1,0 +1,62 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} Course Category List {% endblock %}
+
+{% block content %}
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header"> Course Category List</div>
+            <div class="form-card m-4">
+              {% if messages %}
+              <div class="messages">
+                  {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+                <form class="row g-3 needs-validation" method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="col-md-4">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form.module.label_tag }}
+                        {{ form.module }}
+                    </div>
+
+                    <div class="col-md-4">
+                        {{ form.resource_type.label_tag }}
+                        {{ form.resource_type }}
+                    </div>
+
+                    
+                    <div class="col-md-4">
+                        {{ form.link.label_tag }}
+                        {{ form.link }}
+                    </div>
+
+                    
+                    <div class="col-md-4">
+                        {{ form.file.label_tag }}
+                        {{ form.file }}
+                    </div>
+
+                    <div class="col-12 center">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+    <!-- Include any additional JavaScript for form handling -->
+{% endblock javascripts %}

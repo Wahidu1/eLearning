@@ -1,0 +1,56 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} Instructor List {% endblock %}
+
+{% block content %}
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header"> Instructor List</div>
+            <table class="table m-4">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Roll No</th>
+                        <th>Course</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for single_enrollment in enrollments %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{single_enrollment.roll_number}}</td>
+                        <td>{{single_enrollment.course}}</td>
+                        <td>{{single_enrollment.status}}</td>
+                        <td>
+                            {% comment %} <a class="btn btn-info" href="#">
+                                <i class="fa-solid fa-eye"></i>
+                            </a> {% endcomment %}
+                              <a class="btn btn-primary" href="#">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                              </a>
+                              <a class="btn btn-danger" href="#">
+                                <i class="fa-solid fa-trash"></i>
+                              </a>
+
+
+
+
+                        </td>
+                      </tr>
+                    
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+    <!-- Include any additional JavaScript for form handling -->
+{% endblock javascripts %}

@@ -1,0 +1,116 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} Instructor Add {% endblock %}
+{% block stylesheets %}
+    <style>
+        .profile-image{
+            width:250px;
+            border-radius:10px;
+            margin: 0px auto;
+        }
+    </style>
+
+{% endblock stylesheets %}
+{% block content %}
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header"> Instructor Add</div>
+            <div class="form-card m-4">
+              {% if messages %}
+              <div class="messages">
+                  {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+              <div class="row">
+                <div class="col-6">
+                    <form class="row g-3 needs-validation" method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="col-md-6">
+                            {{ form.roll_number.label_tag }}
+                            {{ form.roll_number }}
+                        </div>
+                        <div class="col-md-6">
+                            
+                            {{ form.course.label_tag }}
+                            {{ form.course }}
+                        </div>
+                        
+                        <div class="col-md-12">
+                            {{ form.status.label_tag }}
+                            {{ form.status }}
+                        </div>
+    
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <h3 class="text-center"> Student Info </h3>
+                    <img class="profile-image" id="profile-image" src="https://fastly.picsum.photos/id/1038/536/354.jpg?hmac=Hu6nao4zkSvq_pHo5pIssp8oYizJus3yfL956AXww70" alt="">
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>Name</td>
+                            <td>:</td>
+                            <td id="student-name">Wahidul Islam</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td id="student-email">wahid@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td>:</td>
+                            <td id="student-phone">01632545232</td>
+                        </tr>
+                    </table>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('#roll_number').on('change', function(){
+                
+               
+                var rollNumber = $(this).val();
+                
+                if(rollNumber){
+                    
+                    var url = '/backend/accounts/get-student-info/' + rollNumber + '/';
+                    $.ajax({
+                        
+                        url:url,
+                        type: "GET",
+                        success: function(data){
+                            //alert(data)
+                            $("#student-name").text(data.name);
+                            $("#student-email").text(data.email);
+                            $("#student-phone").text(data.phone);
+                            $('#profile-image').attr('src', data.image);
+
+                        }
+                    })
+                }
+            })
+
+        }
+
+
+
+        )
+    </script>
+{% endblock javascripts %}

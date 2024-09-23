@@ -1,0 +1,126 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} Instructor Add {% endblock %}
+
+{% block content %}
+<div class="body flex-grow-1 px-3">
+  <div class="container-lg">
+
+    <div class="row">
+
+      <div class="col-7 card mb-4 ">
+        <div class="card-header"> Instructor Add</div>
+        <div class="form-card m-4">
+          {% if messages %}
+          <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <form class="row g-3 needs-validation" method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="col-md-12">
+              {{ form.user.label_tag }}
+              {{ form.user }}
+            </div>
+
+            <div class="col-md-12">
+              {{ form.message.label_tag }}
+              {{ form.message }}
+            </div>
+
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-5 card mb-4">
+        <h3 class="text-center my-2">Receivers</h3>
+        <table class="table m-4">
+          <thead>
+            <tr>
+              <th>SL</th>
+              <th>User ID</th>
+            </tr>
+          </thead>
+          <tbody style="max-height: 200px; overflow-y: scroll;"> 
+            <tr>
+              <th scope="row">1</th>
+              <td>42544</td>
+            </tr>
+
+            <tr>
+              <th scope="row">1</th>
+              <td>42544</td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+  
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+  
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+  
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+  
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+  
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+  
+              <tr>
+                <th scope="row">1</th>
+                <td>42544</td>
+              </tr>
+            </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {% endblock javascripts %}

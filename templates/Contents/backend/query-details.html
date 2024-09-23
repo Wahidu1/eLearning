@@ -1,0 +1,30 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} Instructor List {% endblock %}
+
+{% block content %}
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header"> Instructor List</div>
+                <div class="card-body">
+                    {% if query %}
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Name:</strong> {{ query.name }}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{ query.email }}</li>
+                        <li class="list-group-item"><strong>Subject:</strong> {{ query.subject }}</li>
+                        <li class="list-group-item"><strong>Message:</strong> {{ query.message }}</li>
+                        <li class="list-group-item"><strong>Sent Time:</strong> {{ query.created_at }}</li>
+                    </ul>
+                    {% else %}
+                    <p>No data available.</p>
+                    {% endif %}
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+    <!-- Include any additional JavaScript for form handling -->
+{% endblock javascripts %}

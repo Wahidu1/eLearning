@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheet %}
+<style>
+    /* # The Rotating Marker # */
+    details summary::-webkit-details-marker { display: none; }
+    summary::before {
+      font-family: "Hiragino Mincho ProN", "Open Sans", sans-serif;
+      content: "▶";
+      position: absolute;
+      top: 1rem;
+      left: 0.8rem;
+      transform: rotate(0);
+      transform-origin: center;
+      transition: 0.2s transform ease;
+    }
+    details[open] > summary:before {
+      transform: rotate(90deg);
+      transition: 0.45s transform ease;
+    }
+    
+    /* # The Sliding Summary # */
+    details { overflow: hidden; }
+    details summary {
+      position: relative;
+      z-index: 10;
+    }
+    @keyframes details-show {
+      from {
+        margin-bottom: -80%;
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+    }
+    details > *:not(summary) {
+      animation: details-show 500ms ease-in-out;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease-in-out;
+      color: transparent;
+      overflow: hidden;
+    }
+    details[open] > *:not(summary) { color: inherit; }
+    
+    /* # Style 2 # */
+    details.style2 summary::before {
+      content: "×";
+      color: #FFF;
+      font-size: 2rem;
+      line-height: 1rem;
+      transform: rotate(-45deg);
+      top: 1.2rem;
+      left: 0.5rem;
+    }
+    details[open].style2 > summary:before {
+      transform: rotate(90deg);
+      color: #F00 !important;
+      transition: color ease 2s, transform ease 1s;
+    }
+    
+    /* # Style 3 # */
+    details.style3 summary::before {
+      content: "›";
+      font-size: 2.5rem;
+      line-height: 1rem;
+      top: 1.3rem;
+      left: 0rem;
+      margin: -0.5rem -0.5rem 0 0.5rem;
+      transform-origin: bottom center;
+      transition: margin linear 0.05s;
+    }
+    details.style3:hover > summary:before {
+      color: #FFF;
+    }
+    details[open].style3 > summary:before {
+      left: 0rem;
+      color: #CCC;
+      transform: rotate(90deg);
+      margin-left: 0.4rem;
+      transition: color ease 2s, transform ease 1s, margin ease 1s;
+    }
+    @supports (-webkit-touch-callout: none) {
+      details.style3 summary::before { top: 1.6rem; }
+      details[open].style3 > summary:before { top: 1.3rem; transition: all 0.8s; }
+    }
+    
+    /* # Style 4 # */
+    details.style4 summary {
+      padding-right: 2.2rem;
+      padding-left: 1rem;
+    }
+    details.style4 summary::before {
+      content: "×";
+      color: #FFF;
+      font-size: 2rem;
+      line-height: 1rem;
+      transform: rotate(-45deg);
+      top: 1.2rem;
+      left: unset;
+      right: 0.6rem;
+    }
+    details[open].style4 > summary:before {
+      transform: rotate(90deg);
+      color: #F00 !important;
+      transition: color ease 2s, transform ease 1s;
+    }
+    
+    /* # Style 5 # */
+    details.style5 summary {
+      padding-right: 2.2rem;
+      padding-left: 1rem;
+    }
+    details.style5 summary::before {
+      content: "🙈";
+      font-size: 1.5rem;
+      top: 0.5rem;
+      left: unset;
+      right: 0.5rem;
+      transform: rotate(0);
+    }
+    details.style5:hover > summary::before {
+      content: "🙊";
+    }
+    details[open].style5 > summary::before {
+      content: "🐵";
+      transform: rotate(0deg);
+    }
+    details[open].style5 > summary:hover::before {
+      content: "🙉";
+    }
+    details .monkey-see { display: inline; }
+    details .monkey-hide { display: none; }
+    details[open] .monkey-see { display: none; }
+    details[open] .monkey-hide { display: inline; }
+    
+    /* # Style 6 # */
+    details.style6 summary {
+      padding-right: 2.2rem;
+      padding-left: 1rem;
+    }
+    details.style6 summary::before {
+      content: "❔";
+      font-size: 1.5rem;
+      top: 0.5rem;
+      left: unset;
+      right: 0.5rem;
+      transform: rotate(0);
+    }
+    details.style6:hover > summary:before {
+      content: "👁️‍🗨️";
+    }
+    details[open].style6 > summary:before {
+      content: "❌";
+      transform: rotate(0deg);
+    }
+    
+    /* # Style 7 # */
+    details.style7 summary {
+      padding-left: 3rem;
+    }
+    details[open].style7 summary,
+    details.style7:hover summary {
+      background: #000;
+      color: #CCC;
+    }
+    details[open].style7 summary strong,
+    details.style7:hover summary strong {
+      color: #FDCE4C;
+    }
+    details.style7:hover summary strong { color: #ffdf87; }
+    details.style7 summary::before {
+      content: "🌑";
+      font-size: 1.5rem;
+      top: 0.5rem;
+      left: 0.5rem;
+      transform: rotate(0);
+    }
+    details.style7:hover > summary::before {
+      content: "🌕";
+    }
+    details[open].style7 > summary::before {
+      content: "🌕";
+      transform: rotate(0deg);
+    }
+    details[open].style7 > summary:hover::before {
+      content: "🌕";
+    }
+    details .moon-new { display: inline; }
+    details .moon-full { display: none; }
+    details[open] .moon-new { display: none; }
+    details[open] .moon-full { display: inline; }
+    details.style7 .content { background: #DDD; }
+    
+    /* # Just Some Pretty Styles # */
+    body { font-family: "Open Sans", sans-serif; padding-bottom: 400px; }
+    img { max-width: 100%; }
+    p { margin: 0; padding-bottom: 10px; }
+    p:last-child { padding: 0; }
+    details {
+      max-width: 500px;
+      box-sizing: border-box;
+      margin-top: 5px;
+      background: white;
+    }
+    summary {
+      border: 4px solid transparent;
+      outline: none;
+      padding: 1rem;
+      display: block;
+      background: #666;
+      color: white;
+      padding-left: 2.2rem;
+      position: relative;
+      cursor: pointer;
+    }
+    details[open] summary,
+    summary:hover {
+      color: #FFCA28;
+      background: #444;
+    }
+    summary:hover strong,
+    details[open] summary strong,
+    summary:hover::before,
+    details[open] summary::before {
+      color: #FFA128;
+    }
+    .content {
+      padding: 10px;
+      border: 2px solid #888;
+      border-top: none;
+    }
+</style>
+
+{% endblock stylesheet %}
+
+{% block content %}
+<!-- Course Details Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="section-title bg-white text-start text-primary pe-3">Course</h6>
+                <h1 class="mb-4">{{course.title}}</h1>
+                <div class="row gy-2 gx-4 mb-4">
+                    <div class="col-sm-12">
+                        {% for item in module_with_resource  %}
+                        <details>
+                            <summary>{{forloop.counter}}. {{item.module.title }}</summary>
+                            <div class="content">
+                                <ul>
+                                    {% for resource in item.resources %}
+                                    <li id="video-resource">
+                                        <button class="video-button btn" title="{{ resource.title }}" video-link="{{ resource.link }}" resource-link="{{resource.file}}">
+                                            {{ resource.title }}
+                                        </button>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </details>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
+                <h5 class="mb-4">{{course.title}}</h5>
+                
+                <iframe id="video" width="720" height="645"
+                    src="https://www.youtube.com/embed/RZEUOMbyaao">
+                </iframe>
+                <div class="file">
+                  <p id = "rource_title">Resource Title</p>
+                  <a id='file' href="#" class="btn btn-primary" download>Download</a>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Course Details End -->
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var buttons = document.querySelectorAll('.video-button');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                var video_link = button.getAttribute('video-link');
+                var resource_link = button.getAttribute('resource-link');
+                var title = button.getAttribute('title');
+
+
+                var iframe = document.getElementById('video');
+                var file = document.getElementById('file');
+                var rource_title = document.getElementById('rource_title');
+
+
+                var full_link = "https://www.youtube.com/embed/".concat(video_link)
+                iframe.src = full_link;
+                rource_title.innerText  = title;
+                file.href = resource_link;
+                file.text = "Download";
+            });
+        });
+    });
+</script>
+{% endblock scripts %}

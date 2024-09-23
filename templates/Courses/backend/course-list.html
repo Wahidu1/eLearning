@@ -1,0 +1,70 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} Instructor List {% endblock %}
+
+{% block content %}
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header"> Instructor List</div>
+            <table class="table m-4">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Picture</th>
+                        <th>Title</th>
+                        <th>Instructor</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>
+                            {% if course.image %}
+                            <img src="{{ course.image.url }}" alt="Profile Picture" width="50" height="50">
+                            {% else %}
+                            No picture
+                            {% endif %}
+                        </td>
+                        <td>{{course.title}}</td>
+                        <td>{{course.instructor.first_name}} {{course.instructor.last_name}}</td>
+                        <td>{{course.category.title}}</td>
+                        <td>{{course.price}}</td>
+                        <td>{{course.start_date}}</td>
+                        <td>{{course.end_date}}</td>
+                        <td>
+                            {% comment %} <a class="btn btn-info" href="#">
+                                <i class="fa-solid fa-eye"></i>
+                            </a> {% endcomment %}
+                              <a class="btn btn-primary" href="{% url "backend_course:course_edit" id=course.id %}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                              </a>
+                              <a class="btn btn-danger" href="#">
+                                <i class="fa-solid fa-trash"></i>
+                              </a>
+
+
+
+
+                        </td>
+                      </tr>
+                    
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+    <!-- Include any additional JavaScript for form handling -->
+{% endblock javascripts %}

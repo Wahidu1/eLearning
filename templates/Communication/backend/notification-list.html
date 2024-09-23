@@ -1,0 +1,61 @@
+{% extends "backend-layouts/base.html" %}
+
+{% block title %} notification List {% endblock %}
+
+{% block content %}
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header"> notification List</div>
+            <table class="table m-4">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>User</th>
+                        <th>Message</th>
+                        <th>Read</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for notification in notifications %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{notification.user}}</td>
+                        <td>{{notification.message}}</td>
+                        <td>
+                            {% if notification.read %}
+                            <span class="badge me-1 bg-primary">YES</span>
+                            {% else %}
+                            <span class="badge me-1 bg-danger">NO</span>
+                            {% endif %}
+                            </td>
+                        <td>
+                            {% comment %} <a class="btn btn-info" href="#">
+                                <i class="fa-solid fa-eye"></i>
+                            </a> {% endcomment %}
+                              <a class="btn btn-primary" href="#">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                              </a>
+                              <a class="btn btn-danger" href="#">
+                                <i class="fa-solid fa-trash"></i>
+                              </a>
+
+
+
+
+                        </td>
+                      </tr>
+                    
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+    <!-- Include any additional JavaScript for form handling -->
+{% endblock javascripts %}
